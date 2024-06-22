@@ -20,6 +20,11 @@ const __dirname = dirname(__filename);
 import indexRoute from './routes/index.route.js';
 // import dashboardRoute from './routes/dashboard.route.js';
 import kbliRoute  from './routes/kbli.route.js';
+import umkmRoute from './routes/umkm.route.js';
+import pendudukRoute from './routes/penduduk.route.js';
+import keluargaRoute from './routes/keluarga.route.js';
+
+
 
 
 const app = express();
@@ -67,7 +72,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRoute);  // most top level sitemap. 
-app.use('/adm/data', kbliRoute);
+app.use('/adm/data', kbliRoute, umkmRoute, keluargaRoute, pendudukRoute);
   
 
 

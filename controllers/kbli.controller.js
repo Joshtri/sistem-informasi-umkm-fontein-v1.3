@@ -39,7 +39,8 @@ export const createKbliController = async (req, res) => {
 
     try {
         const createdKbli = await kbliServices.createKbli(kbliData);
-        res.status(201).json(createdKbli);
+        // res.status(201).json(createdKbli);
+        res.redirect('/adm/data/kbli');
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

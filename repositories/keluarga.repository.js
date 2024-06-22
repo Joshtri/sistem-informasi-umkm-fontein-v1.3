@@ -9,3 +9,17 @@ export const getAllKeluarga = async(offset,limit)=>{
        console.log(error) 
     }
 }
+
+
+
+export const createKeluarga = async(keluargaData)=>{
+    try {
+        const createDataKeluarga = await Keluarga.create(keluargaData);
+        return createDataKeluarga;
+
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+
