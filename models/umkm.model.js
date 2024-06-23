@@ -2,6 +2,12 @@ import mongoose from 'mongoose';
 
 const umkmSchema = new mongoose.Schema({
 
+  nama_pemilik: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Penduduk',
+    required: true
+  },
+
   nama_usaha: {
     type: String,
     maxlength: 130,
@@ -13,10 +19,10 @@ const umkmSchema = new mongoose.Schema({
     required: true
   },
   
-  nama_kk:{
-    type:String,
-    maxlength:100,
-    required:true,
+  keluargaId:{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Keluarga',
+    required: true
   },
   pembinaan_usaha:{
     type:String,
@@ -69,6 +75,12 @@ const umkmSchema = new mongoose.Schema({
         'Rp.2,5 Milliar < Omset <= Rp.50 Milliar'
     ],
     required:true
+  },
+
+  kbli_Id:{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Kbli',
+    required: true
   },
 
   kekayaan_bersih_usaha:{

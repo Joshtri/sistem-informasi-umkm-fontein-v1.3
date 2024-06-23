@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%-include('partials/head');%>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<body>
+    <%-include('partials/header');%>
+
+
+    <div class="container mt-4">
+        <nav aria-label="breadcrumb" class="small">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/adm/dashboard"><i class="fa-solid fa-house me-1"></i>Dashboard</a></li>
+                <!-- <li class="breadcrumb-item"><a href="#">Data</a></li> -->
+                <li class="breadcrumb-item active" aria-current="page"><%= title %></li>
+            </ol>
+        </nav>
+        <hr>
+
+        <div class="d-flex justify-content-between border border-2">
+            <div>
+                <a class="btn btn-sm btn-warning" href="/adm/data/add_umkm">Tambah Data</a>
+            </div>
+            <input class="form-control w-25" type="text" id="searchInput" placeholder="Search">
+        </div>
+
+    </div>
+
+
+    <div class="container mt-5">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">No</th>
+                <th scope="col">Nama Usaha</th>
+                <th scope="col">Alamat Usaha</th>
+                <th scope="col">Sumber Modal Usaha</th>
+                <th scope="col" class="text-center">Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+
+
+              <tr>
+                <th scope="row"></th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="text-center">
+                    <a href="/adm/data/kbli" class="btn btn-light btn-sm"><i class="fa-regular fa-eye"></i></a>
+
+                    <a class="btn btn-light btn-sm delete-btn" data-bs-toggle="tooltip" data-bs-title="Delete this data">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </a>
+                </td>
+              </tr>
+           
+
+            </tbody>
+        </table>
+    </div>
+    <script src="/js/tooltip.js"></script>
+</body>
+</html> 

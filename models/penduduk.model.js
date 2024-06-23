@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 
-
 const pendudukSchema = new mongoose.Schema({
   nama_penduduk: {
     type: String,
@@ -20,6 +19,11 @@ const pendudukSchema = new mongoose.Schema({
       'S2',
       'S3'
     ],
+    required: true
+  },
+  keluargaId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Keluarga',
     required: true
   }
 }, {

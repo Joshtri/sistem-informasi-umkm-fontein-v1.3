@@ -33,8 +33,8 @@
             <thead>
               <tr>
                 <th scope="col">No</th>
-                <th scope="col">Nomor KBLI</th>
                 <th scope="col">Keterangan KBLI</th>
+                <th scope="col">Nomor KBLI</th>
                 <th scope="col" class="text-center">Aksi</th>
               </tr>
             </thead>
@@ -43,8 +43,8 @@
 
               <tr>
                 <th scope="row"><%= i + 1 %></th>
-                <td><%= kbliData[i].nomor_kbli %></td>
                 <td><%= kbliData[i].keterangan %></td>
+                <td><%= kbliData[i].nomor_kbli %></td>
                 <td class="text-center">
                     <a href="/adm/data/kbli" class="btn btn-light btn-sm"><i class="fa-regular fa-eye"></i></a>
 
@@ -58,6 +58,47 @@
 
             </tbody>
         </table>
+
+
+
+
+
+    <!-- Pagination halaman data keluarga -->
+      <% if (kbliData.length > 0) { %>
+        <nav aria-label="Keluarga Pagination">
+          <ul class="pagination justify-content-center mt-5">
+      
+            <% if (currentPage == 1) { %>
+              <li class="page-item disabled"><a href="#" class="page-link">First</a></li>
+            <% } else { %>
+              <li class="page-item"><a href="/adm/data/kbli?page=1&limit=<%= limit %>" class="page-link">First</a></li>
+            <% } %>
+      
+            <% var i = (Number(currentPage) > 5 ? Number(currentPage) - 4 : 1) %>
+            <% if(i !== 1) { %>
+              <li class="page-item disabled"><a href="#" class="page-link">...</a></li>
+            <% } %>
+      
+            <% for(; i <= (Number(currentPage) + 4) && i <= totalPages; i++ ) { %>
+              <% if (i == currentPage) { %>
+                <li class="page-item disabled"><a href="#" class="page-link"><%= i %></a></li>
+              <% } else { %>
+                <li class="page-item"><a href="/adm/data/kbli?page=<%= i %>&limit=<%= limit %>" class="page-link"><%= i %></a></li>
+              <% } %>
+              <% if (i == Number(currentPage) + 4 && i < totalPages) { %>
+                <li class="page-item disabled"><a href="#" class="page-link">...</a></li>
+              <% } %>
+            <% } %>
+      
+            <% if (currentPage == totalPages) { %>
+              <li class="page-item disabled"><a href="#" class="page-link">Last</a></li>
+            <% } else { %>
+              <li class="page-item"><a href="/adm/data/kbli?page=<%= totalPages %>&limit=<%= limit %>" class="page-link">Last</a></li>
+            <% } %>
+      
+          </ul>
+        </nav>
+      <% } %>
 
     </div>
     <script src="/js/tooltip.js"></script>

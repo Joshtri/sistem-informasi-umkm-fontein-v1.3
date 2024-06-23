@@ -30,3 +30,13 @@ export const createKbli = async (kbliData)=>{
         console.log(error);
     }
 };
+
+
+export const getTotalKbli = async()=>{
+    try {
+        const totalKbli = await kbli.countDocuments();
+        return totalKbli;
+    } catch (error) {
+        console.log(error);
+    }
+};

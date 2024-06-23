@@ -17,15 +17,21 @@ export const getKbliPageController = async (req, res) => {
 
 export const kbliPage = async (req, res) => {
     const title = "Data KBLI";
-    const offset = parseInt(req.query.offset) || 0;
+    const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 10;
 
     try {
-        const kbliData = await kbliServices.getKbliPage(offset, limit);
+        // const kbliData = await kbliServices.getKbliPage(offset, limit);
+
+        const { data: kbliData, total, page: currentPage, pages: totalPages } = await kbliServices.getKbliPage(page,limit);
 
         res.render('data_kbli', {
             title,
             kbliData,
+            currentPage,
+            totalPages,
+            totalItems: total,
+            limit,
         });
     } catch (error) {
         console.error(error);

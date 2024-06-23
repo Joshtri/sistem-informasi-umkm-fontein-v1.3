@@ -4,6 +4,7 @@ const router = express.Router();
 
 
 router.get('/keluarga', keluargaController.keluargaPage);
+router.post('/keluarga', keluargaController.createKeluarga);
 
 
 export default router;
