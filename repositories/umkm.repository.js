@@ -8,6 +8,7 @@ export const getAllPage = async (offset,limit)=>{
         const getDataUmkm = await Umkm.find()
         .skip(offset)
         .limit(limit)
+        .populate('nama_pemilik');
     return getDataUmkm;
     } catch (error) {
         console.log(error);
@@ -18,7 +19,7 @@ export const getAllPage = async (offset,limit)=>{
 
 export const getAll = async()=>{
     try {
-        const getDataUmkm = await Umkm.find();
+        const getDataUmkm = await Umkm.find()
         return getDataUmkm;
     } catch (error) {
         console.log(error);
