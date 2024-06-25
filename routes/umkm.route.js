@@ -1,21 +1,21 @@
 import express from "express";
 const router = express.Router();
-
+import protect from "../config/auth/protect.js";
 import * as umkmController from '../controllers/umkm.controller.js';
 
-router.get('/umkm', umkmController.umkmPage);
+router.get('/umkm',protect, umkmController.umkmPage);
 
-router.get('/add_umkm', umkmController.addUmkmPage);
+router.get('/add_umkm',protect, umkmController.addUmkmPage);
 
-router.post('/umkm', umkmController.createdUmkm);
+router.post('/umkm',protect, umkmController.createdUmkm);
 
 
-router.get('/umkm/:id', umkmController.getUmkmDetailById);
+router.get('/umkm/:id',protect, umkmController.getUmkmDetailById);
 
-router.delete('/umkm/:id', umkmController.deleteUmkm);
+router.delete('/umkm/:id',protect, umkmController.deleteUmkm);
 
-router.get('/umkm_edit/:id', umkmController.getUmkmByIdEdit);
+router.get('/umkm_edit/:id',protect, umkmController.getUmkmByIdEdit);
 
-router.put('/umkm/:id', umkmController.updateUmkm);
+router.put('/umkm/:id',protect, umkmController.updateUmkm);
 
 export default router;

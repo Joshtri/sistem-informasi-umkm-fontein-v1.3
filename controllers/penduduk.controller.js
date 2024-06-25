@@ -49,7 +49,7 @@ export const createPenduduk = async(req,res)=>{
         const pendudukData = req.body;
         const newPenduduk = await pendudukServices.createPenduduk(pendudukData);
 
-        await req.flash(`messageCreateSuccess`,`Data KBLI ${newPenduduk.nama_penduduk} berhasil ditambahkan.`);
+        await req.flash(`messageCreateSuccess`,`Data Penduduk ${newPenduduk.nama_penduduk} berhasil ditambahkan.`);
         res.redirect('/adm/data/penduduk');
     } catch (error) {
         console.log(error);

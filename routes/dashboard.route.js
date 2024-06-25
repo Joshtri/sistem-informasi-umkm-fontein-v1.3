@@ -9,6 +9,6 @@ router.get('/main/dashboard', protect, dashboardController.dashboardPage);
 
 router.get('/main/informasi_akun', protect,dashboardController.informasiAkunPage);
 
-router.get('/logout', dashboardController.logoutUser);
+router.get('/logout', protect, dashboardController.logoutUser);
 
 export default router;

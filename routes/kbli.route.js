@@ -1,22 +1,22 @@
 import express from "express";
 const router = express.Router();
 import * as kbliController from "../controllers/kbli.controller.js";
+import protect from "../config/auth/protect.js";
+
+router.get('/kbli', protect, kbliController.kbliPage);
+router.get('/kbli_test',protect, kbliController.getKbliPageController)
 
 
-router.get('/kbli', kbliController.kbliPage);
-router.get('/kbli_test', kbliController.getKbliPageController)
+router.post('/kbli',protect, kbliController.createKbliController)
+
+router.get('/kbli/:id',protect, kbliController.getKbliDetailById);
+
+router.delete('/kbli/:id',protect, kbliController.deleteKbli);
+
+router.get('/kbli_edit/:id',protect, kbliController.getKbliByIdEdit)
 
 
-router.post('/kbli', kbliController.createKbliController)
-
-router.get('/kbli/:id', kbliController.getKbliDetailById);
-
-router.delete('/kbli/:id', kbliController.deleteKbli);
-
-router.get('/kbli_edit/:id', kbliController.getKbliByIdEdit)
-
-
-router.put('/kbli/:id', kbliController.updateKbli);
+router.put('/kbli/:id',protect, kbliController.updateKbli);
 
 
 export default router;
