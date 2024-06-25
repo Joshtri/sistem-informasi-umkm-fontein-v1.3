@@ -1,3 +1,5 @@
+/* eslint-disable no-useless-catch */
+import Penduduk from '../models/penduduk.model.js';
 import * as pendudukRepository from '../repositories/penduduk.repository.js';
 
 
@@ -48,5 +50,48 @@ export const getAll = async()=>{
         return pendudukData;
     } catch (error) {
         console.log(error);
+    }
+};
+
+
+// You can add more service functions here as needed
+export const getPendudukById = async (_id) => {
+    try {
+      const pendudukDetail = await pendudukRepository.findPendudukById(_id);
+      return pendudukDetail;
+    } catch (error) {
+      throw error;
+    }
+};
+
+
+export const deletePenduduk = async(id)=>{
+    try {
+        const deletedPenduduk = await pendudukRepository.deletePendudukById(id);
+        return deletedPenduduk;
+    } catch (error) {
+        throw error;
+    }
+}
+
+// Service to update Penduduk data by ID
+export const updatePenduduk = async (id, updatedData) => {
+    try {
+        const updatedPenduduk = await pendudukRepository.updatePenduduk(id, updatedData);
+        return updatedPenduduk;
+    } catch (error) {
+        throw new Error(`Error updating Penduduk data: ${error.message}`);
+    }
+};
+
+
+
+
+export const findPendudukByKeluargaId = async (keluargaId) => {
+    try {
+        const penduduk = await Penduduk.find({ keluargaId });
+        return penduduk;
+    } catch (error) {
+        throw error;
     }
 };

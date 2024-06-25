@@ -3,13 +3,13 @@ import mongoose from 'mongoose';
 const kbliSchema = new mongoose.Schema({
 
   nomor_kbli: {
-    type: Number,
+    type: String,
     maxlength: 50,
     required: true
   },
   keterangan: {
     type: String,
-    maxlength: 240,
+    maxlength: 220,
     required: true
   },
 }, {

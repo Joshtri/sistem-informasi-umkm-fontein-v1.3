@@ -21,6 +21,17 @@ const pendudukSchema = new mongoose.Schema({
     ],
     required: true
   },
+
+  jenis_kelamin: {
+    type: String,
+    enum: [
+      'laki-laki',
+      'perempuan',
+    ],
+    required: true
+  },
+
+
   keluargaId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Keluarga',

@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-catch */
 import * as keluargaRepository from '../repositories/keluarga.repository.js';
 
 
@@ -38,6 +39,17 @@ export const getKeluargaPage = async (page = 1, limit = 10) => {
 };
 
 
+// You can add more service functions here as needed
+export const getKeluargaById = async (_id) => {
+    try {
+      const keluargaDetail = await keluargaRepository.findKeluargaById(_id);
+      return keluargaDetail;
+    } catch (error) {
+      throw error;
+    }
+};
+
+
 
 
 export const getTotalKeluarga = async()=>{
@@ -57,5 +69,25 @@ export const getAll = async()=>{
         return getAllKeluarga;
     } catch (error) {
         console.log(error);
+    }
+};
+
+
+export const deleteKeluarga = async(id)=>{
+    try {
+        const deletedKeluarga = await keluargaRepository.deleteKeluargaById(id);
+        return deletedKeluarga;
+    } catch (error) {
+        throw error;
+    }
+}
+
+// Service to update Keluarga data by ID
+export const updateKeluarga = async (id, updatedData) => {
+    try {
+        const updatedKeluarga = await keluargaRepository.updateKeluarga(id, updatedData);
+        return updatedKeluarga;
+    } catch (error) {
+        throw new Error(`Error updating Keluarga data: ${error.message}`);
     }
 };

@@ -42,3 +42,35 @@ export const getTotalKeluarga = async()=>{
         console.log(error);
     }
 };
+
+
+// Find Keluarga data by ID
+export const findKeluargaById = async (id) => {
+    try {
+        const keluarga = await Keluarga.findById(id);
+        return keluarga;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+// Delete Keluarga data by ID
+export const deleteKeluargaById = async (id) => {
+    try {
+        const deletedKeluarga = await Keluarga.findByIdAndDelete(id);
+        return deletedKeluarga;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+// Update Keluarga data by ID
+export const updateKeluarga = async (id, updatedData) => {
+    try {
+        const updatedKeluarga = await Keluarga.findByIdAndUpdate(id, updatedData, { new: true });
+        return updatedKeluarga;
+    } catch (error) {
+        throw new Error(`Error updating Keluarga data: ${error.message}`);
+    }
+};
+

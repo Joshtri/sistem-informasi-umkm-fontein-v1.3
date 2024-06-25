@@ -19,7 +19,7 @@ const umkmSchema = new mongoose.Schema({
     required: true
   },
   
-  keluargaId:{
+  keluarga_Id:{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Keluarga',
     required: true
