@@ -1,34 +1,26 @@
 import express from 'express';
 import path from 'path';
 import flash from 'connect-flash';
-
 import { config } from 'dotenv';
 import session from 'express-session';
 import methodOverride from 'method-override';
 import mongoose from 'mongoose';
 import MongoStore from 'connect-mongo';
 import connectDB from './config/dbConfig.js';
-
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-
 import indexRoute from './routes/index.route.js';
 import dashboardRoute from './routes/dashboard.route.js';
-import kbliRoute  from './routes/kbli.route.js';
+import kbliRoute from './routes/kbli.route.js';
 import umkmRoute from './routes/umkm.route.js';
 import pendudukRoute from './routes/penduduk.route.js';
 import keluargaRoute from './routes/keluarga.route.js';
 import userRoute from './routes/user.route.js';
-
 import statistikRoute from './routes/statistik.route.js';
-
-
-
 
 const app = express();
 const port = process.env.PORT || "3003";
@@ -45,16 +37,12 @@ const viewsDirectories = [
     path.join(__dirname, 'views', 'kbli'),
     path.join(__dirname, 'views', 'statistik'),
     path.join(__dirname, 'views', 'user'),
-
 ];
-
-
 
 // view engine setup
 app.set('views', viewsDirectories);
 app.set('view engine', 'ejs');
 app.use(flash({ sessionKeyName: 'flashMessage' }));
-
 
 app.use(
   session({
@@ -66,9 +54,7 @@ app.use(
     store: MongoStore.create({
       mongoUrl: process.env.MONGODB_URI, // Replace with your MongoDB connection string
       collectionName: 'sessions'
-    })  
-  
-    
+    })
   })
 );
 
@@ -79,9 +65,25 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRoute,dashboardRoute, statistikRoute);  // most top level sitemap. 
-app.use('/adm/data', kbliRoute, umkmRoute, keluargaRoute, pendudukRoute,userRoute);
-  
+app.use('/', indexRoute, dashboardRoute, statistikRoute);  // most top level sitemap.
+app.use('/adm/data', kbliRoute, umkmRoute, keluargaRoute, pendudukRoute, userRoute);
 
+// catch 404 and forward to error handler
+app.use((req, res, next) => {
+  const err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
+
+// error handler
+app.use((err, req, res, next) => {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error', { error: err, message: err.message });
+});
 
 app.listen(port, () => console.log(`listening on ${port}`));
