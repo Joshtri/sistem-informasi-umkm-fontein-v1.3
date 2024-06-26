@@ -17,27 +17,24 @@
 
     <style>
         .danger-zone {
-            border: 0px solid #dc3545; /* Membuat border lebih tipis */
+            border: 0px solid #dc3545;
             padding: 15px;
             border-radius: 2px;
             margin-top: 30px;
-            box-shadow: 0 2px 4px rgba(220, 53, 69, 0.5); /* Menambahkan shadow dengan warna merah */
+            box-shadow: 0 2px 4px rgba(220, 53, 69, 0.5);
         }
     </style>
 
     <div class="container mt-4 mb-3">
         <nav aria-label="breadcrumb" class="small">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/adm/dashboard"><i class="fa-solid fa-house me-1"></i>Dashboard</a></li>
-                <!-- <li class="breadcrumb-item"><a href="#">Data</a></li> -->
+                <li class="breadcrumb-item"><a href="/main/dashboard"><i class="fa-solid fa-house me-1"></i>Dashboard</a></li>
                 <li class="breadcrumb-item active" aria-current="page"><%= title %> (<%= user.nama_lengkap %>)</li>
             </ol>
         </nav>
         <hr>
 
-
         <a href="/main/dashboard" class="btn btn-sm btn-warning">Kembali</a>
-
 
         <h3 class="mt-2">Informasi Akun Anda</h3>
         <table class="table">
@@ -45,21 +42,19 @@
                 <tr>
                     <th scope="col">Nama Lengkap</th>
                     <th scope="col">Username</th>
-                    <!-- <th scope="col">Email</th> -->
                     <th scope="col"></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
-                <!-- Data akun bisa diisi dengan data yang berasal dari backend -->
                 <tr>
-                    <td id="nama_lengkap" contenteditable="true"  oninput="showSaveButton()" class="text-capitalize"><%= user.nama_lengkap %></td>
+                    <td id="nama_lengkap" contenteditable="true" oninput="showSaveButton()" class="text-capitalize"><%= user.nama_lengkap %></td>
                     <td id="username" contenteditable="true" oninput="showSaveButton()"><%= user.username %></td>
+                    <!-- <td>
+                        <i onclick="editUser('<%= user._id %>')" class="fa-solid fa-pen-to-square" style="color: #74C0FC;"></i>
+                    </td> -->
                     <td>
-                        <i onclick="editUser('<%= user.id_user %>')" class="fa-solid fa-pen-to-square" style="color: #74C0FC;"></i>
-                    </td>
-                    <td>
-                        <i onclick="saveUpdate('<%= user.id_user %>')" id="save_update" class="fa-solid fa-floppy-disk fa-fade" style="color: #74C0FC; display:none;"></i>
+                        <i onclick="saveUpdate('<%= user._id %>')" id="save_update" class="fa-solid fa-floppy-disk fa-fade" style="color: #74C0FC; display:none;"></i>
                     </td>
                 </tr>
             </tbody>
@@ -76,6 +71,7 @@
             </button>
             <div class="collapse" id="dangerZoneContent">
                 <form id="change-password-form" onsubmit="return validatePasswordChangeForm(event)">
+                    <input type="hidden" id="user-id" name="userId" value="<%= user._id %>">
                     <div class="mb-3">
                         <label for="new-password" class="form-label">Kata Sandi Baru</label>
                         <input type="password" class="form-control" id="new-password" name="new-password" required>
@@ -88,35 +84,153 @@
                 </form>
             </div>
         </div>
+    </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="successModalLabel">Password Changed Successfully</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Your password has been changed successfully. You will be logged out in <span id="countdown">5</span> seconds.
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="successModalDetail" tabindex="-1" aria-labelledby="successModalDetailLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="successModalDetailLabel">User Details Updated Successfully</h5>
+                </div>
+                <div class="modal-body">
+                    Your user details have been updated successfully. You will be logged out in <span id="countdownDetail">5</span> seconds.
+                </div>
+                <!-- <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div> -->
+            </div>
+        </div>
     </div>
 
 
     <script>
-        function showSaveButton(){
+        function showSaveButton() {
             document.getElementById('save_update').style.display = 'inline-block';
         }
+    
+        function saveUpdate(userId) {
+            const namaLengkap = document.getElementById('nama_lengkap').textContent.trim();
+            const username = document.getElementById('username').textContent.trim();
+    
+            const data = {
+                userId: userId,
+                namaLengkap: namaLengkap,
+                username: username
+            };
+    
+            fetch('/update_user', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(result => {
+                if (result.error) {
+                    alert(result.error);
+                } else {
+                    showModalAndLogoutDetail();
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    
+        function showModalAndLogoutDetail() {
+            const modal = new bootstrap.Modal(document.getElementById('successModalDetail'));
+            modal.show();
+    
+            let countdown = 5;
+            const countdownElement = document.getElementById('countdownDetail');
+            const countdownInterval = setInterval(() => {
+                countdown--;
+                countdownElement.textContent = countdown;
+                if (countdown === 0) {
+                    clearInterval(countdownInterval);
+                    window.location.href = '/logout';
+                }
+            }, 1000);
+        }
+        </script>
 
-        // Fungsi untuk mengubah subjek menjadi dapat diedit
-        function editUser(userId) {
-            var usernameElement = document.getElementById('username');
-            var namaLengkapElement = document.getElementById('nama_lengkap');
-            // var emailElement = document.getElementById('email');
+    <script>
 
-            usernameElement.contentEditable = true; // Set subjek menjadi dapat diedit
-            namaLengkapElement.contentEditable = true;
-            // emailElement.contentEditable = true;
+        function validatePasswordChangeForm(event) {
+            event.preventDefault();
 
-            usernameElement.focus(); // Berikan fokus ke username
-            namaLengkapElement.focus(); // Berikan fokus ke nama_lengkap
-            // emailElement.focus(); // Berikan fokus ke email
+            const userId = document.getElementById('user-id').value;
+            const newPassword = document.getElementById('new-password').value;
+            const confirmNewPassword = document.getElementById('confirm-new-password').value;
 
-            document.getElementById('save_update').style.display = 'inline-block'; // Tampilkan tombol simpan
+            if (newPassword !== confirmNewPassword) {
+                alert('Passwords do not match');
+                return false;
+            }
+
+            const data = {
+                userId: userId,
+                newPassword: newPassword,
+                confirmNewPassword: confirmNewPassword
+            };
+
+            fetch('/update_password', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(result => {
+                if (result.error) {
+                    alert(result.error);
+                } else {
+                    showModalAndLogout();
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
+            return false;
+        }
+
+        function showModalAndLogout() {
+            const modal = new bootstrap.Modal(document.getElementById('successModal'));
+            modal.show();
+
+            let countdown = 5;
+            const countdownElement = document.getElementById('countdown');
+            const countdownInterval = setInterval(() => {
+                countdown--;
+                countdownElement.textContent = countdown;
+                if (countdown === 0) {
+                    clearInterval(countdownInterval);
+                    window.location.href = '/logout';
+                }
+            }, 1000);
         }
     </script>
 
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>  
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
