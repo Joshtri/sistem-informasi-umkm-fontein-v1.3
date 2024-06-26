@@ -64,7 +64,7 @@ export const addUmkmPage = async(req,res)=>{
 
 export const createdUmkm = async(req,res)=>{
     try {
-        const umkmData = req.body
+        const umkmData = req.body;
         const newUmkm = await umkmServices.createdUmkm(umkmData);
 
         await req.flash(`messageCreateSuccess`,`Data UMKM dengan usaha ${newUmkm.nama_usaha} berhasil ditambahkan.`);
@@ -154,5 +154,32 @@ export const updateUmkm = async(req,res)=>{
         res.redirect('/adm/data/umkm')
     } catch (error) {
         res.status(500).json({ message: error.message });
+    }
+};
+
+export const getTotalUmkmMikro = async (req, res) => {
+    try {
+        const totalMikro = await umkmServices.getTotalMikro();
+        res.json({ totalMikro });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
+export const getTotalUmkmKecil = async (req, res) => {
+    try {
+        const totalKecil = await umkmServices.getTotalKecil();
+        res.json({ totalKecil });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
+export const getTotalUmkmMenengah = async (req, res) => {
+    try {
+        const totalMenengah = await umkmServices.getTotalMenengah();
+        res.json({ totalMenengah });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
     }
 };

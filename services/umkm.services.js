@@ -99,3 +99,35 @@ export const findUmkmByPendudukId = async (pendudukId) => {
         throw error;
     }
 };
+
+
+export const getTotalKecil = async () => {
+    try {
+        const totalKecil = await umkmRepository.getTotalUmkmKecil();
+        return totalKecil;
+    } catch (error) {
+        console.log(error);
+        throw new Error('Error fetching kecil UMKM');
+    }
+};
+
+
+export const getTotalMikro = async () => {
+    try {
+        const totalMikro = await umkmRepository.getTotalUmkmMikro();
+        return totalMikro;
+    } catch (error) {
+        console.log(error);
+        throw new Error('Error fetching Mikro UMKM');
+    }
+};
+
+export const getTotalMenengah = async () => {
+    try {
+        const totalMenengah = await umkmRepository.getTotalUmkmMenengah();
+        return totalMenengah;
+    } catch (error) {
+        console.log(error);
+        throw new Error('Error fetching Menengah UMKM');
+    }
+};

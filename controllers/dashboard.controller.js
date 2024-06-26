@@ -5,6 +5,7 @@ import * as pendudukServices from '../services/penduduk.services.js';
 import * as umkmServices from '../services/umkm.services.js';
 
 
+
 export const dashboardPage = async(req,res)=>{
     const title = "Dashboard";
     try {
@@ -13,6 +14,9 @@ export const dashboardPage = async(req,res)=>{
         const totalKeluarga = await keluargaServices.getTotalKeluarga();
         const totalPenduduk = await pendudukServices.getTotalPenduduk();
         const totalUmkm = await umkmServices.getTotalUmkm();
+        const totalUmkmMenengah = await umkmServices.getTotalMenengah();
+        const totalUmkmKecil = await umkmServices.getTotalKecil();
+        const totalUmkmMikro = await umkmServices.getTotalMikro();
 
         const user = req.session.user;
         res.render('dashboard',{
@@ -21,7 +25,10 @@ export const dashboardPage = async(req,res)=>{
             totalKeluarga,
             totalPenduduk,
             totalUmkm,
-            user
+            user,
+            totalUmkmMenengah,
+            totalUmkmKecil,
+            totalUmkmMikro
         });
     } catch (error) {
         console.log(error);

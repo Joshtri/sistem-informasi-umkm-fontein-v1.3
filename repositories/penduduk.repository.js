@@ -86,3 +86,25 @@ export const updatePenduduk = async (id, updatedData) => {
         throw new Error(`Error updating Penduduk data: ${error.message}`);
     }
 };
+
+
+export const getPendidikanStatistics = async (_, res) => {
+    try {
+      const pendidikanLevels = [
+        'Belum/Tidak Pernah Sekolah', 'Belum/Tidak Tamat SD/SDLB/MI/Paket A', 'SD/SDLB/MI/Paket A',
+        'SMP/SMPLB/MTs/Paket B', 'SMA/SMLB/MA/SMK/MAK/paket C', 'DI/DII/DIII', 
+        'DIV/S1', 'S2', 'S3'
+      ];
+  
+      const pendidikanStatistics = {};
+  
+      for (const level of pendidikanLevels) {
+        const count = await Penduduk.countDocuments({ pendidikan_penduduk: level });
+        pendidikanStatistics[level] = count;
+      }
+  
+      res.status(200).json(pendidikanStatistics);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  };
