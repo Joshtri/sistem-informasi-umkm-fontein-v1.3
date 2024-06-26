@@ -57,16 +57,20 @@ app.use(flash({ sessionKeyName: 'flashMessage' }));
 
 
 app.use(
-    session({
-      proxy: true,
-      secret: 'secret',
-      resave: false,
-      saveUninitialized: true,
+  session({
+    proxy: true,
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: true,
+    name: 'fontein',
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGODB_URI, // Replace with your MongoDB connection string
+      collectionName: 'sessions'
+    })  
+  
     
-      
-    })
+  })
 );
-
 
 // Method override middleware
 app.use(methodOverride('_method'));

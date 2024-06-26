@@ -57,7 +57,7 @@ export const userPage = async (req,res)=>{
     try {
 
         const userData = await User.find();
-        const messageCreateSuccess = await req.flash('df');
+        const messageCreateSuccess = await req.flash('messageCreateSuccess');
 
         res.render('data_user',{
             title,

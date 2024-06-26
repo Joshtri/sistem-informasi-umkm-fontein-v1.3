@@ -9,7 +9,7 @@ const protect = (req, res, next) => {
     } else {
         // Jika admin belum login, redirect ke halaman login
         
-        req.flash('messageProtect','Anda harus login terlebih dulu')
+        // req.flash('messageProtect','Anda harus login terlebih dulu')
         res.redirect('/');
         console.log('Anda harus login terlebih dulu');
     }
