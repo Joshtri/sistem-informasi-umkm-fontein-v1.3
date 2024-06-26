@@ -38,7 +38,7 @@
                             <select class="form-select" id="keluarga_Id" name="keluarga_Id" required>
                                 <option value="">-</option>
                                 <% for(let i = 0; i < keluargaData.length; i++) { %>
-                                    <option value="<%= keluargaData[i]._id %>"><%= keluargaData[i]._id %></option>
+                                    <option value="<%= keluargaData[i]._id %>"><%= keluargaData[i].nama_kepala_keluarga %></option>
                                 <% } %>
                             </select>
                         </div>

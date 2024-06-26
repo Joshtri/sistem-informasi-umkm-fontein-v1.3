@@ -5,23 +5,80 @@ import * as umkmServices from '../services/umkm.services.js';
 
 
 
-export const pendudukPage = async (req,res)=>{
-    const title = "Data Penduduk"
+// export const pendudukPage = async (req,res)=>{
+//     const title = "Data Penduduk"
+//     const page = parseInt(req.query.page) || 1;
+//     const limit = parseInt(req.query.limit) || 10;
+//     try {
+
+//         const keluargaData = await keluargaServices.getAll();
+//         const { data: pendudukData, total, page: currentPage, pages: totalPages } = await pendudukServices.getPendudukPage(page,limit);
+
+
+//         const messageCreateSuccess = await req.flash('messageCreateSuccess');
+//         const messageDeleteSuccess = await req.flash('messageDeleteSuccess');
+//         const messageUpdateSuccess = await req.flash('messageUpdateSuccess');
+//         const messageDeleteError = await req.flash('messageDeleteError');
+
+
+//         res.render('data_penduduk',{
+//             title,
+//             keluargaData,
+//             totalPages,
+//             totalItems: total,
+//             limit,
+//             pendudukData,
+//             currentPage,
+
+//             //PESAN UNTUK CRUD.
+//             messageCreateSuccess,
+//             messageDeleteSuccess,
+//             messageUpdateSuccess,
+//             messageDeleteError
+            
+//         });
+//     } catch (error) {
+//         console.log(error);
+//     }
+
+// };
+
+
+export const pendudukPage = async (req, res) => {
+    const title = "Data Penduduk";
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 10;
+    const showAll = req.query.showAll === 'true'; // Check if showAll parameter is set to true
+
     try {
+        let pendudukData, total, totalPages, currentPage;
+
+        if (showAll) {
+            // Get all data without pagination
+            const allPendudukData = await pendudukServices.getPendudukPage();
+
+            pendudukData = allPendudukData.data;
+            total = allPendudukData.total;
+            totalPages = 1; // Since all data is shown on one page
+            currentPage = 1; // Set currentPage to 1 for all data
+        } else {
+            // Get paginated data
+            const { data: paginatedPendudukData, total: paginatedTotal, page: fetchedPage, pages: paginatedTotalPages } = await pendudukServices.getPendudukPage(page, limit);
+
+            pendudukData = paginatedPendudukData;
+            total = paginatedTotal;
+            totalPages = paginatedTotalPages;
+            currentPage = fetchedPage; // Set currentPage to fetchedPage
+        }
 
         const keluargaData = await keluargaServices.getAll();
-        const { data: pendudukData, total, page: currentPage, pages: totalPages } = await pendudukServices.getPendudukPage(page,limit);
-
 
         const messageCreateSuccess = await req.flash('messageCreateSuccess');
         const messageDeleteSuccess = await req.flash('messageDeleteSuccess');
         const messageUpdateSuccess = await req.flash('messageUpdateSuccess');
         const messageDeleteError = await req.flash('messageDeleteError');
 
-
-        res.render('data_penduduk',{
+        res.render('data_penduduk', {
             title,
             keluargaData,
             totalPages,
@@ -40,8 +97,8 @@ export const pendudukPage = async (req,res)=>{
     } catch (error) {
         console.log(error);
     }
-
 };
+
 
 
 export const createPenduduk = async(req,res)=>{

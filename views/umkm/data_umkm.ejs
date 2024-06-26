@@ -137,42 +137,48 @@
         </div>
 
       <%-include('umkm/delete_umkm'); %>
-      <!-- Pagination halaman data keluarga -->
-      <% if (umkmData.length > 0) { %>
-        <nav aria-label="Keluarga Pagination">
-          <ul class="pagination justify-content-center mt-5">
-      
-            <% if (currentPage == 1) { %>
+<!-- Pagination halaman data UMKM -->
+<% if (umkmData.length > 0) { %>
+  <nav aria-label="UMKM Pagination">
+      <ul class="pagination justify-content-center mt-5">
+  
+          <% if (currentPage == 1) { %>
               <li class="page-item disabled"><a href="#" class="page-link">First</a></li>
-            <% } else { %>
+          <% } else { %>
               <li class="page-item"><a href="/adm/data/umkm?page=1&limit=<%= limit %>" class="page-link">First</a></li>
-            <% } %>
-      
-            <% var i = (Number(currentPage) > 5 ? Number(currentPage) - 4 : 1) %>
-            <% if(i !== 1) { %>
+          <% } %>
+  
+          <% var i = (Number(currentPage) > 5 ? Number(currentPage) - 4 : 1) %>
+          <% if(i !== 1) { %>
               <li class="page-item disabled"><a href="#" class="page-link">...</a></li>
-            <% } %>
-      
-            <% for(; i <= (Number(currentPage) + 4) && i <= totalPages; i++ ) { %>
+          <% } %>
+  
+          <% for(; i <= (Number(currentPage) + 4) && i <= totalPages; i++ ) { %>
               <% if (i == currentPage) { %>
-                <li class="page-item disabled"><a href="#" class="page-link"><%= i %></a></li>
+                  <li class="page-item disabled"><a href="#" class="page-link"><%= i %></a></li>
               <% } else { %>
-                <li class="page-item"><a href="/adm/data/umkm?page=<%= i %>&limit=<%= limit %>" class="page-link"><%= i %></a></li>
+                  <li class="page-item"><a href="/adm/data/umkm?page=<%= i %>&limit=<%= limit %>" class="page-link"><%= i %></a></li>
               <% } %>
               <% if (i == Number(currentPage) + 4 && i < totalPages) { %>
-                <li class="page-item disabled"><a href="#" class="page-link">...</a></li>
+                  <li class="page-item disabled"><a href="#" class="page-link">...</a></li>
               <% } %>
-            <% } %>
-      
-            <% if (currentPage == totalPages) { %>
+          <% } %>
+
+          <% if (currentPage == totalPages) { %>
               <li class="page-item disabled"><a href="#" class="page-link">Last</a></li>
-            <% } else { %>
+          <% } else { %>
               <li class="page-item"><a href="/adm/data/umkm?page=<%= totalPages %>&limit=<%= limit %>" class="page-link">Last</a></li>
-            <% } %>
-      
-          </ul>
-        </nav>
-      <% } %>
+          <% } %>
+
+          <!-- Add Show All option -->
+          <li class="page-item">
+              <a href="/adm/data/umkm?showAll=true" class="page-link">Show All</a>
+          </li>
+  
+      </ul>
+  </nav>
+<% } %>
+
     </div>
 
         <!-- srcipt untuk delete data kbli -->

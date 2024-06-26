@@ -4,19 +4,70 @@ import * as kbliServices from '../services/kbli.services.js';
 import * as umkmServices from '../services/umkm.services.js';
 
 
-export const umkmPage = async(req,res)=>{
+// export const umkmPage = async(req,res)=>{
+//     const title = "Data UMKM";
+//     const page = parseInt(req.query.page) || 1;
+//     const limit = parseInt(req.query.limit) || 10;
+//     try {
+//         const { data: umkmData, total, page: currentPage, pages: totalPages } = await umkmServices.getUmkmPage(page,limit);
+
+
+//         const messageCreateSuccess = await req.flash('messageCreateSuccess');
+//         const messageDeleteSuccess = await req.flash('messageDeleteSuccess');
+//         const messageUpdateSuccess = await req.flash('messageUpdateSuccess');
+
+//         res.render('data_umkm',{
+//             title,
+//             umkmData,
+//             totalPages,
+//             totalItems: total,
+//             limit,
+//             currentPage,
+
+//             //PESAN UNTUK CRUD.
+//             messageCreateSuccess,
+//             messageDeleteSuccess,
+//             messageUpdateSuccess
+//         });
+//     } catch (error) {
+//         console.log(error);
+//     }
+
+
+// }
+
+export const umkmPage = async (req, res) => {
     const title = "Data UMKM";
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 10;
-    try {
-        const { data: umkmData, total, page: currentPage, pages: totalPages } = await umkmServices.getUmkmPage(page,limit);
+    const showAll = req.query.showAll === 'true'; // Check if showAll parameter is set to true
 
+    try {
+        let umkmData, total, totalPages, currentPage;
+
+        if (showAll) {
+            // Get all data without pagination
+            const allUmkmData = await umkmServices.getUmkmPage();
+
+            umkmData = allUmkmData.data;
+            total = allUmkmData.total;
+            totalPages = 1; // Since all data is shown on one page
+            currentPage = 1; // Set currentPage to 1 for all data
+        } else {
+            // Get paginated data
+            const { data: paginatedUmkmData, total: paginatedTotal, page: fetchedPage, pages: paginatedTotalPages } = await umkmServices.getUmkmPage(page, limit);
+
+            umkmData = paginatedUmkmData;
+            total = paginatedTotal;
+            totalPages = paginatedTotalPages;
+            currentPage = fetchedPage; // Set currentPage to fetchedPage
+        }
 
         const messageCreateSuccess = await req.flash('messageCreateSuccess');
         const messageDeleteSuccess = await req.flash('messageDeleteSuccess');
         const messageUpdateSuccess = await req.flash('messageUpdateSuccess');
 
-        res.render('data_umkm',{
+        res.render('data_umkm', {
             title,
             umkmData,
             totalPages,
@@ -32,9 +83,8 @@ export const umkmPage = async(req,res)=>{
     } catch (error) {
         console.log(error);
     }
+};
 
-
-}
 
 
 

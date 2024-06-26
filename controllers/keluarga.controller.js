@@ -5,14 +5,65 @@ import * as umkmServices from '../services/umkm.services.js';
 import * as kbliServices from '../services/kbli.services.js';
 
 
+// export const keluargaPage = async(req,res)=>{
+//     const title = "Data Keluarga";
+//     const page = parseInt(req.query.page) || 1;
+//     const limit = parseInt(req.query.limit) || 10;
+
+//     try {
+
+//         const { data: keluargaData, total, page: currentPage, pages: totalPages } = await keluargaServices.getKeluargaPage(page,limit);
+
+//         const messageCreateSuccess = await req.flash('messageCreateSuccess');
+//         const messageDeleteSuccess = await req.flash('messageDeleteSuccess');
+//         const messageUpdateSuccess = await req.flash('messageUpdateSuccess');
+//         const messageDeleteError = await req.flash('messageDeleteError');
+
+//         res.render("data_keluarga",{
+//             title,
+//             currentPage,
+//             keluargaData,
+//             totalPages,
+//             totalItems: total,
+//             limit,
+
+//             //PESAN UNTUK CRUD.
+//             messageCreateSuccess,
+//             messageDeleteSuccess,
+//             messageUpdateSuccess,
+//             messageDeleteError
+//         });
+//     } catch (error) {
+//         console.log(error);   
+//     }
+
+
+// }
+
 export const keluargaPage = async(req,res)=>{
     const title = "Data Keluarga";
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 10;
+    const showAll = req.query.showAll === 'true'; // Check if showAll parameter is set to true
 
     try {
+        let keluargaData, total, totalPages;
 
-        const { data: keluargaData, total, page: currentPage, pages: totalPages } = await keluargaServices.getKeluargaPage(page,limit);
+        if (showAll) {
+            // Get all data without pagination
+            const allKeluargaData = await keluargaServices.getKeluargaPage();
+
+            keluargaData = allKeluargaData.data;
+            total = allKeluargaData.total;
+            totalPages = 1; // Since all data is shown on one page
+        } else {
+            // Get paginated data
+            const { data: paginatedKeluargaData, total: paginatedTotal, page: currentPage, pages: paginatedTotalPages } = await keluargaServices.getKeluargaPage(page, limit);
+
+            keluargaData = paginatedKeluargaData;
+            total = paginatedTotal;
+            totalPages = paginatedTotalPages;
+        }
 
         const messageCreateSuccess = await req.flash('messageCreateSuccess');
         const messageDeleteSuccess = await req.flash('messageDeleteSuccess');
@@ -21,7 +72,7 @@ export const keluargaPage = async(req,res)=>{
 
         res.render("data_keluarga",{
             title,
-            currentPage,
+            currentPage: page, // Pass current page number
             keluargaData,
             totalPages,
             totalItems: total,
@@ -36,8 +87,6 @@ export const keluargaPage = async(req,res)=>{
     } catch (error) {
         console.log(error);   
     }
-
-
 }
 
 
