@@ -184,19 +184,19 @@
         <!-- srcipt untuk delete data kbli -->
     <script>
       document.addEventListener('DOMContentLoaded', function() {
-          var deleteButtons = document.querySelectorAll('.delete-btn');
-          var deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
-          var deleteForm = document.getElementById('deleteForm');
-          var deleteIdInput = document.getElementById('deleteId');
+        var deleteButtons = document.querySelectorAll('.delete-btn');
+        var deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
+        var deleteForm = document.getElementById('deleteForm');
+        var deleteIdInput = document.getElementById('deleteId');
 
-          deleteButtons.forEach(function(button) {
-              button.addEventListener('click', function() {
-                  var id = this.getAttribute('data-id');
-                  deleteForm.setAttribute('action', '/adm/data/umkm/' + id + '?_method=DELETE');
-                  deleteIdInput.value = id;
-                  deleteModal.show();
-              });
+        deleteButtons.forEach(function(button) {
+          button.addEventListener('click', function() {
+            var id = this.getAttribute('data-id');
+            deleteForm.setAttribute('action', '/adm/data/umkm/' + id + '?_method=DELETE');
+            deleteIdInput.value = id;
+            deleteModal.show();
           });
+        });
 
           
       });
