@@ -37,7 +37,9 @@ export const loginUser = async (req, res) => {
             res.redirect('/main/dashboard');
         } else {
             // Login gagal, berikan pesan error
-            res.status(401).json({ message: 'Invalid username or password' });
+            await req.flash('messageProtect', 'Username atau password salah.')
+            res.redirect('/')
+            // res.status(401).json({ message: 'Invalid username or password' });
         }
     } catch (error) {
         res.status(500).json({ message: `Error logging in: ${error.message}` });
@@ -59,8 +61,16 @@ export const registerUserController = async (req, res) => {
 
 export const loginPage = async (req,res)=>{
     const title = "Login Page"
-    res.render('index',{
-        title
-    });
+    try {
+        const messageProtect = await req.flash('messageProtect')
+        res.render('index',{
+            title,
+            messageProtect
+        });
+    } catch (error) {
+        console.log(error);
+    }
+
+
 
 };
