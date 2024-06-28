@@ -33,7 +33,7 @@
             </div>
             <div class="col-12">
                 <label for="foto_kegiatan" class="form-label">Foto Kegiatan</label>
-                <input class="form-control" type="file" id="foto_kegiatan" name="foto_kegiatan" accept="image/*" required>
+                <input class="form-control" type="file" id="foto_kegiatan" name="foto_kegiatan" accept="*" required>
             </div>
             <div class="col-12">
                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -71,6 +71,16 @@
             const tanggal_kegiatan = document.getElementById('tanggal_kegiatan').value;
             const deskripsi_kegiatan = document.getElementById('deskripsi_kegiatan').value;
             const foto_kegiatan = document.getElementById('foto_kegiatan').files[0];
+
+            if (!foto_kegiatan) {
+                alert('Mohon unggah file.');
+                return;
+            }
+
+            if (foto_kegiatan.size > 5 * 1024 * 1024) { // Ukuran maksimal 5MB
+                alert('Ukuran file terlalu besar. Maksimal 5MB.');
+                return;
+            }
 
             const reader = new FileReader();
             reader.onloadend = async () => {
