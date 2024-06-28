@@ -3,15 +3,16 @@
 
 - [Introduction](#introduction)
     - [Built With](#built-with)
+    - [Prerequisites](#prerequisites)
 - [Setup & Installation](#installation)
-- [Usage](#usage)
 - [Roadmap](#roadmap)
-- [Dependencies](#dependencies)
+- [Contributing](#contributing)
 - [License](#license)
+- [Contact](#contact)
 
 ## Introduction
 
-**admin-fontein-v1.3** adalah project berbasis Node.js yang memanfaatkan berbagai paket untuk pengembangan web, termasuk Express untuk penanganan sisi server, Mongoose untuk interaksi MongoDB, dan Sequelize untuk interaksi database SQL. Ia dirancang untuk memfasilitasi aplikasi web yang kuat dan aman dengan manajemen sesi, otentikasi, dan kemampuan templating.
+**Sistem Informasi UMKM Kelurahan Fontein-v1.3** adalah proyek berbasis Node.js yang memanfaatkan berbagai paket untuk pengembangan web, termasuk Express untuk penanganan sisi server, Mongoose untuk interaksi dengan MongoDB, dan Sequelize untuk interaksi dengan database SQL. Sistem ini bertujuan untuk membantu usaha mikro, kecil, dan menengah (UMKM) di Kelurahan Fontein dalam mengelola informasi dan operasi mereka secara efektif.
 
 
 ## Built With
@@ -20,20 +21,25 @@
 - **Express**: web Framework yang digunakan dalam pengembangan project Node.Js.
 - **Mongoose**: digunakan sebagai penyimpanan data.
 - **EJS**: Embedded JavaScript Templating atau "Effective JavaScript Templating" tergantung interpretasi merupakan sebuah bahasa templating yang simpel untuk Node.js
-- **bcrypt**: Password hashing function for security
 - **Session Management**: Menggunakan `express-session` and `connect-mongo`
 - **Method Override**: Memungkinkan penggunaan metode PUT atau DELETE di tempat yang tidak didukung oleh klien.
 - **dotenv**: Mengelola env variable yang digunakan dalam projetc web dengan `dotenv`
+
+### Prerequisites
+Pastikan Anda sudah menginstall software berikut:
+
+- **Node.js** (versi 20.13.1 atau lebih baru)
+- **pnpm** (versi 9.3.0 atau lebih baru)
+- **MongoDB** (mongodb.com)
+
 ## Setup & Installation:
 
 1. **Clone the repository:**
-
    ```bash
    git clone https://github.com/yourusername/admin-fontein-v1.3.git
    cd admin-fontein-v1.3
    
 1. **Install Packages:**
-
    ```bash
    $ pnpm install
    
@@ -45,10 +51,30 @@ jalankan perintah `pnpm run start` atau `pnpm run dev` jika dalam development
    ```bash
    $ pnpm run dev
    
-## Usage:
-Please refer to our non-existent Documentation. We're working on it, I promise.
+
 ## Roadmap:
 Properly implement reusable configs
-   -[ ] eslint
+   -[ ] integrasi eslint untuk code linting.
 
-## Usage:
+## Contributing:
+Kontribusi Anda adalah yang membuat komunitas open-source menjadi tempat yang luar biasa untuk belajar, berinspirasi, dan berkarya. Kontribusi apa pun yang Anda berikan akan sangat kami hargai.
+
+1. **Fork Repository (Pisahkan Repositori)**
+2. **Buat Branch Fitur Anda**
+   ```bash
+   git checkout -b fitur/FiturKeren
+3. **Commit Perubahan Anda**
+   ```bash
+   git commit -m 'Tambah FiturKeren'
+3. **Push ke Branch**
+   ```bash
+   git push origin fitur/FiturKeren
+3. **Buka Pull Request (permintaan penggabungan)**
+
+
+## License:
+Distributed under the MIT License. See LICENSE.txt for more information.
+
+## Contact:
+📧 E-Mail - stuffofyos1516@gmail.com
+Project Link: https://github.com/Joshtri/fontein-si-umkm-1.3
