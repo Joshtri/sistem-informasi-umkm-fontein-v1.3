@@ -53,12 +53,10 @@ jalankan perintah `pnpm run start` atau `pnpm run dev` jika dalam development
 
 ## Roadmap:
 Properly implement reusable configs
-   -[ ] integrasi eslint untuk code linting.
-
+- [ ] integrasi eslint untuk code linting.
 ## 🚧 Under Construction
 Terdapat beberapa kemungkinan penambahan fitur dan perbaikan di masa mendatang. Berikut adalah beberapa fitur dan perbaikan yang mungkin akan ditambahkan:
-[ ] export data into CSV
-
+- [ ] export data into CSV
 ## Contributing:
 Kontribusi Anda adalah yang membuat komunitas open-source menjadi tempat yang luar biasa untuk belajar, berinspirasi, dan berkarya. Kontribusi apa pun yang Anda berikan akan sangat kami hargai.
 
