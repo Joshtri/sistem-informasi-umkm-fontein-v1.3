@@ -1,10 +1,10 @@
-# Admin Fontein-v1.3
-## Table of Contents
+# Sistem Informasi UMKM Kelurahan Fontein-v1.3 
+## 📕Table of Contents
 
 - [Introduction](#introduction)
     - [Built With](#built-with)
     - [Prerequisites](#prerequisites)
-- [Setup & Installation](#installation)
+- [Setup & Installation](#setup--installation)
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
 - [License](#license)
@@ -15,7 +15,7 @@
 **Sistem Informasi UMKM Kelurahan Fontein-v1.3** adalah proyek berbasis Node.js yang memanfaatkan berbagai paket untuk pengembangan web, termasuk Express untuk penanganan sisi server, Mongoose untuk interaksi dengan MongoDB, dan Sequelize untuk interaksi dengan database SQL. Sistem ini bertujuan untuk membantu usaha mikro, kecil, dan menengah (UMKM) di Kelurahan Fontein dalam mengelola informasi dan operasi mereka secara efektif.
 
 
-## Built With
+## ⚙️  Built With
 
 - **pnpm**: pnpm adalah pengelola paket yang khusus dirancang untuk project Node.js. Fungsinya mirip dengan npm (Node Package Manager).
 - **Express**: web Framework yang digunakan dalam pengembangan project Node.Js.
@@ -25,14 +25,12 @@
 - **Method Override**: Memungkinkan penggunaan metode PUT atau DELETE di tempat yang tidak didukung oleh klien.
 - **dotenv**: Mengelola env variable yang digunakan dalam projetc web dengan `dotenv`
 
-### Prerequisites
+###  Prerequisites
 Pastikan Anda sudah menginstall software berikut:
-
-- **Node.js** (versi 20.13.1 atau lebih baru)
-- **pnpm** (versi 9.3.0 atau lebih baru)
-- **MongoDB** (mongodb.com)
-
-## Setup & Installation:
+- ![Node.js](https://img.shields.io/badge/Node.js-20.13.1-green)  (versi 20.13.1 atau lebih baru)
+- ![MongoDB](https://img.shields.io/badge/MongoDB-9.3.0-green) (mongodb.com)
+- ![pnpm](https://img.shields.io/badge/pnpm-9.3.0-orange) (versi 9.3.0 atau lebih baru)
+##  Setup & Installation:
 
 1. **Clone the repository:**
    ```bash
@@ -74,6 +72,7 @@ Kontribusi Anda adalah yang membuat komunitas open-source menjadi tempat yang lu
 
 ## License:
 Distributed under the MIT License. See LICENSE.txt for more information.
+![License](https://img.shields.io/badge/License-MIT-yellow)
 
 ## Contact:
 📧 E-Mail - stuffofyos1516@gmail.com
