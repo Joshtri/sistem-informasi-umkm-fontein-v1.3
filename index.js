@@ -21,6 +21,7 @@ import pendudukRoute from './routes/penduduk.route.js';
 import keluargaRoute from './routes/keluarga.route.js';
 import userRoute from './routes/user.route.js';
 import statistikRoute from './routes/statistik.route.js';
+import kegiatanRoute from './routes/kegiatan.route.js';
 
 const app = express();
 const port = process.env.PORT || "3003";
@@ -37,6 +38,7 @@ const viewsDirectories = [
     path.join(__dirname, 'views', 'kbli'),
     path.join(__dirname, 'views', 'statistik'),
     path.join(__dirname, 'views', 'user'),
+    path.join(__dirname, 'views', 'kegiatan'),
 ];
 
 // view engine setup
@@ -66,7 +68,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRoute, dashboardRoute, statistikRoute);  // most top level sitemap.
-app.use('/adm/data', kbliRoute, umkmRoute, keluargaRoute, pendudukRoute, userRoute);
+app.use('/adm/data', kbliRoute, umkmRoute, keluargaRoute, pendudukRoute, userRoute,kegiatanRoute);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

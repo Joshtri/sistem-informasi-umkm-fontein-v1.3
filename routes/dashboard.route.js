@@ -11,10 +11,10 @@ router.get('/main/dashboard', protect, dashboardController.dashboardPage);
 router.get('/main/informasi_akun', protect,dashboardController.informasiAkunPage);
 
 // Route for updating password
-router.post('/update_password', updateUserPassword);
+router.post('/update_password', protect,updateUserPassword);
 
 // Route to update user details
-router.post('/update_user', updateUser);
+router.post('/update_user', protect,updateUser);
 
 
 router.get('/logout', protect, dashboardController.logoutUser);
