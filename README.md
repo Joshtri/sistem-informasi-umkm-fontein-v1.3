@@ -3,13 +3,10 @@
 
 - [Introduction](#introduction)
     - [Built With](#built-with)
-- [Features](#features)
-- [Installation](#installation)
+- [Setup & Installation](#installation)
 - [Usage](#usage)
-- [Scripts](#scripts)
+- [Roadmap](#roadmap)
 - [Dependencies](#dependencies)
-- [Dev Dependencies](#dev-dependencies)
-- [Contributing](#contributing)
 - [License](#license)
 
 ## Introduction
@@ -18,30 +15,40 @@
 
 
 ## Built With
-- **EJS**: Embedded JavaScript Templating atau "Effective JavaScript Templating" tergantung interpretasi merupakan sebuah bahasa templating yang simpel untuk Node.js.
-- **pnpm**: pnpm is a package manager specifically designed for Node.js projects. It functions similarly to npm (Node Package Manager)
-- **MongoDB**: digunakan sebagai penyimpanan data.
-- **Session Management**: Using `express-session` and `connect-mongo`
-- **Express**: Fast, unopinionated, minimalist web framework for Node.js 
-- **Environment Variables**: Managed by `dotenv`    
-- **Method Override**: Allows using PUT or DELETE methods in places where the client doesn't support it
 
-- **Environment Variables**: Managed by `dotenv`
-## Features
-
-
-- **Mongoose**: Elegant MongoDB object modeling for Node.js
- and Microsoft SQL Server
-- **EJS**: Embedded JavaScript templating
+- **pnpm**: pnpm adalah pengelola paket yang khusus dirancang untuk project Node.js. Fungsinya mirip dengan npm (Node Package Manager).
+- **Express**: web Framework yang digunakan dalam pengembangan project Node.Js.
+- **Mongoose**: digunakan sebagai penyimpanan data.
+- **EJS**: Embedded JavaScript Templating atau "Effective JavaScript Templating" tergantung interpretasi merupakan sebuah bahasa templating yang simpel untuk Node.js
 - **bcrypt**: Password hashing function for security
-- **Session Management**: Using `express-session` and `connect-mongo`
-- **Method Override**: Allows using PUT or DELETE methods in places where the client doesn't support it
-
-
-## Installation
+- **Session Management**: Menggunakan `express-session` and `connect-mongo`
+- **Method Override**: Memungkinkan penggunaan metode PUT atau DELETE di tempat yang tidak didukung oleh klien.
+- **dotenv**: Mengelola env variable yang digunakan dalam projetc web dengan `dotenv`
+## Setup & Installation:
 
 1. **Clone the repository:**
 
    ```bash
    git clone https://github.com/yourusername/admin-fontein-v1.3.git
    cd admin-fontein-v1.3
+   
+1. **Install Packages:**
+
+   ```bash
+   $ pnpm install
+   
+1. **Setup env files:**
+Siapkan file `.env.development` jika dalam lingkup pengembangan dan file `.env.production` dalam lingkup produksi.
+
+4. **Run Program**
+jalankan perintah `pnpm run start` atau `pnpm run dev` jika dalam development
+   ```bash
+   $ pnpm run dev
+   
+## Usage:
+Please refer to our non-existent Documentation. We're working on it, I promise.
+## Roadmap:
+Properly implement reusable configs
+   -[ ] eslint
+
+## Usage:
