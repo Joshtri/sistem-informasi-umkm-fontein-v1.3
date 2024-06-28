@@ -72,7 +72,7 @@ Kontribusi Anda adalah yang membuat komunitas open-source menjadi tempat yang lu
 
 ## License:
 Distributed under the MIT License. See LICENSE.txt for more information.
-![License](https://img.shields.io/badge/License-MIT-yellow)
+- ![License](https://img.shields.io/badge/License-MIT-yellow)
 
 ## Contact:
 📧 E-Mail - stuffofyos1516@gmail.com
