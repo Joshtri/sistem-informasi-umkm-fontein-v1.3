@@ -78,5 +78,5 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 - ![License](https://img.shields.io/badge/License-MIT-yellow)
 
 ## Contact:
-📧 E-Mail - stuffofyos1516@gmail.com
-Project Link: https://github.com/Joshtri/fontein-si-umkm-1.3
+- 📧 E-Mail - stuffofyos1516@gmail.com
+- Project Link: https://github.com/Joshtri/fontein-si-umkm-1.3
