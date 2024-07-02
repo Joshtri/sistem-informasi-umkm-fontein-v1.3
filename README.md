@@ -1,4 +1,5 @@
-# Sistem Informasi UMKM Kelurahan Fontein-v1.3 
+# Sistem Informasi UMKM Kelurahan Fontein-v1.3
+**Akses Aplikasi**: Buka web browser dan akses [Sistem Informasi UMKM Kelurahan Fontein](https://fontein-si-umkm-1-3.vercel.app/).
 ## 📕Table of Contents
 
 - [Introduction](#introduction)
@@ -35,7 +36,7 @@ Pastikan Anda sudah menginstall software berikut:
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/admin-fontein-v1.3.git
+   git clone https://github.com/Joshtri/sistem-informasi-umkm-fontein-v1.3
    cd admin-fontein-v1.3
    
 1. **Install Packages:**
@@ -79,4 +80,4 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 ## Contact:
 - 📧 E-Mail - stuffofyos1516@gmail.com
-- Project Link: https://github.com/Joshtri/fontein-si-umkm-1.3
+- Project Link: https://github.com/Joshtri/sistem-informasi-umkm-fontein-v1.3
