@@ -37,7 +37,7 @@ Pastikan Anda sudah menginstall software berikut:
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/Joshtri/sistem-informasi-umkm-fontein-v1.3
-   cd admin-fontein-v1.3
+   cd fontein-si-umkm-1-3
    
 1. **Install Packages:**
    ```bash
